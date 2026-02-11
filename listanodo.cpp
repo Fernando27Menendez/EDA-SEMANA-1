@@ -241,6 +241,7 @@ int main()
     cout << "Eliminando en posicion 1: ";
     lst.eliminar_posicion(0);
     lst.mostrar();
-
+    
+    cin.get();
     return 0; 
 }

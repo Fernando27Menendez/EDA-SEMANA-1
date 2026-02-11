@@ -365,7 +365,7 @@ int main()
     miCola.mostrar();   
     
     
-    
+    cin.get();
     return 0; 
 
 }

@@ -104,5 +104,6 @@ int main()
     miPila.clean();
     miPila.imprimir();
 
+    cin.get();
     return 0;
 }

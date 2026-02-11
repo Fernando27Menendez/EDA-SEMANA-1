@@ -125,6 +125,6 @@ int main()
     cc.push(70);
 
     cc.imprimir();
-
+    cin.get();
     return 0;
 }

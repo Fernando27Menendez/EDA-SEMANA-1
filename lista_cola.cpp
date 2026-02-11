@@ -108,6 +108,6 @@ int main()
     lst.eliminar();
     lst.mostrar();
 
-
+    cin.get();
     return 0; 
 }

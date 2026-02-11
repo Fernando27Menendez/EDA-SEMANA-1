@@ -91,6 +91,6 @@ int main()
     cout << "Eliminando un elemento de la Pila ";
     lst.eliminar();
     lst.mostrar();
-
+    cin.get();
     return 0; 
 }
