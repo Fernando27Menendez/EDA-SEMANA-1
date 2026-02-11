@@ -61,7 +61,7 @@ public:
             }
             
             actual->siguiente = nuevoNodo;
-            nuevoNodo->anterior = actual; // Enlazar el nuevo nodo con el anterior
+            nuevoNodo->anterior = actual;
         }
     }
 
@@ -96,10 +96,10 @@ public:
         } 
         else 
         {
-            // El nuevo nodo apunta al siguiente del actual
+            // El nuevo nodo apunta al puntero siguiente del actual(1 pos antes del nuevo)
             nuevoNodo->siguiente = actual->siguiente;
             
-            // El nuevo nodo apunta hacia atrás al actual
+            // El nuevo nodo con su puntero anterior apunta hacia atrás al actual
             nuevoNodo->anterior = actual;
 
             // Si hay un nodo después, ese nodo debe apuntar hacia atrás al nuevo
@@ -141,7 +141,7 @@ public:
             return;
         }
 
-        // Caso especial: Solo hay un elemento
+        
         if (inicio->siguiente == nullptr) 
         {
             delete inicio;
@@ -151,13 +151,13 @@ public:
 
         Nodo* actual = inicio;
         
-        // Vamos hasta el último nodo directamente
+        
         while (actual->siguiente != nullptr) 
         {
             actual = actual->siguiente;
         }
 
-        // Actual es el último nodo, actual->anterior es el penúltimo
+        
         actual->anterior->siguiente = nullptr;
         delete actual;  
     }
@@ -184,8 +184,7 @@ public:
         Nodo* actual = inicio;
         int contador = 0;
 
-        // Llegamos al nodo EXACTO que queremos borrar (no al anterior)
-        // Es más fácil manejar punteros dobles estando en el nodo a borrar
+        
         while (actual != nullptr && contador < pos) 
         {
             actual = actual->siguiente;
@@ -198,15 +197,13 @@ public:
             return;
         }
 
-        // Desconectamos el nodo 'actual'
-        
-        // 1. El nodo anterior debe apuntar al siguiente del actual
+       
         if (actual->anterior != nullptr) {
             actual->anterior->siguiente = actual->siguiente;
         }
         
-        // 2. El nodo siguiente debe apuntar al anterior del actual
-        if (actual->siguiente != nullptr) {
+        if (actual->siguiente != nullptr) 
+        {
             actual->siguiente->anterior = actual->anterior;
         }
 
@@ -228,21 +225,21 @@ public:
         }
         cout << "NULL" << endl;
     }
-
-    // Método extra para verificar que los enlaces dobles funcionan
     void mostrar_invertido()
     {
         if (inicio == nullptr) return;
 
-        // Ir al final primero
+    
         Nodo* actual = inicio;
-        while(actual->siguiente != nullptr) {
+        while(actual->siguiente != nullptr) 
+        {
             actual = actual->siguiente;
         }
 
         cout << "Vuelta: NULL <- ";
-        // Recorrer hacia atrás
-        while (actual != nullptr) {
+
+        while (actual != nullptr) 
+        {
             cout << actual->dato;
             if(actual->anterior != nullptr) cout << " <-> ";
             else cout << " -> ";
@@ -263,6 +260,54 @@ public:
     }
 };
 
+
+class Pila {
+private:
+    Lista listaInterna;
+
+public:
+    void push(int valor) 
+    {
+        listaInterna.agregar_izquierda(valor);
+    }
+
+    void pop() 
+    {
+        listaInterna.eliminar_izquierda();
+    }
+
+    void mostrar() 
+    {
+        cout << "Tope -> ";
+        listaInterna.mostrar();
+    }
+};
+
+class Cola {
+private:
+
+    Lista listaInterna;
+
+public:
+    void encolar(int valor) 
+    {
+        
+        listaInterna.agregar_derecha(valor);
+    }
+
+    void desencolar() 
+    {
+    
+        listaInterna.eliminar_izquierda();
+    }
+
+    void mostrar() 
+    {
+        cout << "Inicio Fila -> ";
+        listaInterna.mostrar();
+    }
+};
+
 int main() 
 {
     Lista lst;
@@ -279,7 +324,7 @@ int main()
     cout << "Insertando 25 en posicion 2: " << endl;
     lst.agregar_posicion(25, 2);
     lst.mostrar();
-    lst.mostrar_invertido(); // Prueba de fuego para lista doble
+    lst.mostrar_invertido(); 
 
     cout << "Eliminando de la izquierda: " << endl;
     lst.eliminar_izquierda();
@@ -290,8 +335,37 @@ int main()
     lst.mostrar();
 
     cout << "Eliminando en posicion 1: " << endl;
-    lst.eliminar_posicion(0); // Nota: en tu main original borrabas 0, que es la izq
+    lst.eliminar_posicion(0);   
     lst.mostrar();
 
+    // --- PRUEBA DE PILA ---
+    cout << "================ PILA  ================" << endl;
+    Pila miPila;
+    miPila.push(10); 
+    miPila.push(20); 
+    miPila.push(30); 
+    miPila.mostrar(); 
+    
+    cout << "Haciendo Pop (sacar plato)..." << endl;
+    miPila.pop();    
+    miPila.mostrar(); 
+
+    cout << endl;
+
+    // --- PRUEBA DE COLA ---
+    cout << "================== COLA=====================" << endl;
+    Cola miCola;
+    miCola.encolar(100);
+    miCola.encolar(200);
+    miCola.encolar(300); 
+    miCola.mostrar();    
+
+    cout << "Atendiendo cliente (desencolar)..." << endl;
+    miCola.desencolar(); 
+    miCola.mostrar();   
+    
+    
+    
     return 0; 
+
 }
