@@ -1,7 +1,7 @@
-# Tarea de Programación en C++
+# CAPTURAS DE PANTALLA CORRESPONDIENTES A LOS EJERCICIOS ENCARGADOS
 
 ## Descripción
-Este repositorio contiene los códigos encargados para la tarea de [Nombre de la materia].
+Este repositorio contiene los códigos encargados para la tarea de ESTRUCTURAS DE DATOS AVANZADAS.
 
 ## Capturas de Ejecución
 Aquí se muestran los resultados de los programas:
